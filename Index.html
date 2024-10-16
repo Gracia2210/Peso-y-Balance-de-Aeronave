@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peso y Balance de Aeronave</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Peso y Balance de Aeronave</h1>
+        <div>
+            <label for="indice">Índice: </label>
+            <input type="number" id="indice" step="0.01" oninput="updateAllMoments()">
+        </div>
+        <table id="balanceTable">
+            <thead>
+                <tr>
+                    <th>Elemento</th>
+                    <th>Peso (kg)</th>
+                    <th>Brazo (in)</th>
+                    <th>Momento (kg·in)/Índice</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="elemento" placeholder="Nombre del elemento"></td>
+                    <td><input type="number" name="peso" step="0.1" oninput="updateMoment(this)"></td>
+                    <td><input type="number" name="brazo" placeholder="Escribe el brazo" oninput="updateMoment(this)" required></td> <!-- Campo para ingresar solo números -->
+                    <td><input type="number" name="momento" readonly></td> <!-- Solo lectura -->
+                    <td><button onclick="deleteRow(this)">Eliminar</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td><input type="number" id="totalPeso" readonly></td>
+                    <td></td>
+                    <td><input type="number" id="totalMomento" readonly></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <button onclick="addRow()">Agregar Fila</button>
+        
+        <h2>C.G.=ΣMomentos/ΣPesos * Índice</h2>
+        <table>
+            <tr>
+                <th>C.G. (in)</th>
+            </tr>
+            <tr>
+                <td><input type="number" id="cg" readonly></td>
+            </tr>
+        </table>
+        <button id="resetButton" onclick="resetCalculation()">Reiniciar Cálculo</button> <!-- Botón de reiniciar -->
+    </div>
+    <script src="script.js"></script> <!-- Enlace al archivo JavaScript -->
+</body>
+</html>
